@@ -12,7 +12,7 @@ const AccountOverviewPage = () => {
     }, []);
 
     return <ul>
-        {accounts.map(account => <li>{account.title}</li>)}
+        {accounts.map(account => <li key={account.id}>{account.title}</li>)}
     </ul>
 
 }

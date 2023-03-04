@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react";
-import agent from "../../api/agent";
-import { Account } from "../../models/account";
+import { useEffect } from "react";
+import { fetchAccounts } from "../../store/accounts/action";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 const AccountOverviewPage = () => {
-    const [accounts, setAccounts] = useState<Account[]>([]);
+
+    const dispatch = useAppDispatch();
+    const { isFetching, accounts } = useAppSelector(state => state.account);
 
     useEffect(() => {
-        agent.Accounts.list().then(response => {
-            setAccounts(response);
-        })
+        dispatch(fetchAccounts());
     }, []);
+
+    if (isFetching) return <h1>Loading...</h1>
 
     return <ul>
         {accounts.map(account => <li key={account.id}>{account.title}</li>)}

@@ -5,13 +5,23 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './app/layout/App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { store } from './app/store/store';
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store} >
+      <ToastContainer
+        position="top-right"
+        hideProgressBar
+        theme="colored"
+      />
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

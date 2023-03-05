@@ -13,9 +13,11 @@ const AccountOverviewPage = () => {
 
     if (isFetching) return <h1>Loading...</h1>
 
-    return <ul>
-        {accounts.map(account => <li key={account.id}>{account.title}</li>)}
-    </ul>
+    return (
+        <ul>
+            {accounts.map(account => <li key={account.id}>{account.title}</li>)}
+        </ul>
+    );
 
 }
 

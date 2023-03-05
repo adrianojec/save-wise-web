@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
+import { LoginUser, User } from '../store/users/types';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
@@ -45,17 +46,3 @@ export const requests = {
     put: <T>(url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
     del: <T>(url: string) => axios.delete<T>(url).then(responseBody),
 }
-
-// const Accounts = {
-//     list: () => requests.get<Account[]>('/Accounts'),
-//     details: (id: string) => requests.get<Account>(`/Accounts/${id}`),
-//     create: (account: CreateAccount) => requests.post<void>('/Accounts', account),
-//     update: (id: string, account: UpdateAccount) => requests.put<void>(`/Accounts/${id}`, account),
-//     delete: (id: string) => requests.del<void>(`/Accounts/${id}`)
-// }
-
-// const agent = {
-//     Accounts
-// }
-
-// export default agent;

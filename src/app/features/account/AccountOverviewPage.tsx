@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 const AccountOverviewPage = () => {
 
     const dispatch = useAppDispatch();
-    const { isFetching, accounts } = useAppSelector(state => state.account);
+    const { isFetching, accounts } = useAppSelector(state => state.accounts);
 
     useEffect(() => {
         dispatch(fetchAccounts());

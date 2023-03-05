@@ -14,26 +14,26 @@ export const accountSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         // Get accounts
-        builder.addCase(fetchAccounts.pending, (state, action) => {
+        builder.addCase(fetchAccounts.pending, (state, _) => {
             state.isFetching = true;
         });
         builder.addCase(fetchAccounts.fulfilled, (state, action) => {
             state.isFetching = false;
             state.accounts = action.payload;
         });
-        builder.addCase(fetchAccounts.rejected, (state, store) => {
+        builder.addCase(fetchAccounts.rejected, (state, _) => {
             state.isFetching = false;
         });
 
         // Get account by id
-        builder.addCase(fetchAccount.pending, (state, action) => {
+        builder.addCase(fetchAccount.pending, (state, _) => {
             state.isFetching = true;
         });
         builder.addCase(fetchAccount.fulfilled, (state, action) => {
             state.isFetching = false;
             state.account = action.payload;
         });
-        builder.addCase(fetchAccount.rejected, (state, store) => {
+        builder.addCase(fetchAccount.rejected, (state, _) => {
             state.isFetching = false;
         });
     }

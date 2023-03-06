@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { SLICE_NAME } from "../../utilities/enums";
 import { fetchAccount, fetchAccounts } from "./action";
 import { AccountsState } from "./types";
 
@@ -9,7 +10,7 @@ export const initialState: AccountsState = {
 }
 
 export const accountSlice = createSlice({
-    name: 'account',
+    name: SLICE_NAME.ACCOUNTS,
     initialState: initialState,
     reducers: {},
     extraReducers: (builder) => {

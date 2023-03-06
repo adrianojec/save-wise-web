@@ -1,21 +1,20 @@
 import { useState } from "react";
 import { Button, Card, Form, Spinner } from "react-bootstrap"
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchUser } from "../../store/users/action";
 import { LoginUserInput, RegisterUserInput } from "../../store/users/types";
 import { CONFIRM_PASSWORD, EMAIL_ADDRESS, EMPTY_STRING, FIRST_NAME, LAST_NAME, LOGIN, LOGIN_MESSAGE, PASSWORD, REGISTER, REGISTER_MESSAGE, SIGN_IN, SIGN_UP, SUBMIT, USER_NAME } from "../../utilities/constants";
-import { BUTTON_VARIANT, FORM_TYPE } from "../../utilities/enums";
+import { VARIANT, FORM_TYPE, USER_FORM, PATH_NAME } from "../../utilities/enums";
 
-const LoginPage = () => {
+interface Props {
+    formType: USER_FORM
+}
+
+const LoginPage = ({ formType }: Props) => {
     const dispatch = useAppDispatch();
     const { isFetching, user } = useAppSelector(state => state.user);
 
-    enum USER_FORM {
-        LOGIN,
-        REGISTER
-    }
-
-    const [formType, setFormType] = useState<USER_FORM>(USER_FORM.LOGIN);
     const [loginUser, setLoginUser] = useState<LoginUserInput>({
         email: EMPTY_STRING,
         password: EMPTY_STRING,
@@ -29,9 +28,14 @@ const LoginPage = () => {
         confirmPassword: EMPTY_STRING,
     });
 
-    const handleFormType = () => setFormType(loginForm ? USER_FORM.REGISTER : USER_FORM.LOGIN);
+    const navigate = useNavigate();
 
-    const handleLogin = () => dispatch(fetchUser(loginUser));
+    const handleSwitchForm = () => navigate(formType == USER_FORM.LOGIN ? PATH_NAME.REGISTER : PATH_NAME.LOGIN);
+
+    const handleLogin = () => {
+        dispatch(fetchUser(loginUser));
+        navigate(PATH_NAME.HOME);
+    };
 
     const handleRegister = () => {
         if (registerUser.password != registerUser.confirmPassword) return console.log('Not Equal');
@@ -126,7 +130,7 @@ const LoginPage = () => {
                             <span
                                 role="button"
                                 className="ps-1 pointer text-primary"
-                                onClick={handleFormType}
+                                onClick={handleSwitchForm}
                             >
                                 {loginForm ? SIGN_UP : SIGN_IN}
                             </span>
@@ -134,7 +138,7 @@ const LoginPage = () => {
                     </Form.Group>
 
                     <Button
-                        variant={BUTTON_VARIANT.PRIMARY}
+                        variant={VARIANT.PRIMARY}
                         onClick={loginForm ? handleLogin : handleRegister}
                     >
                         {SUBMIT}

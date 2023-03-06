@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { SLICE_NAME } from "../../utilities/enums";
 import { fetchUser } from "./action";
 import { UserState } from "./types";
 
@@ -9,7 +10,7 @@ export const initialState: UserState = {
 }
 
 export const userSlice = createSlice({
-    name: 'user',
+    name: SLICE_NAME.USERS,
     initialState: initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -19,7 +20,7 @@ export const userSlice = createSlice({
         builder.addCase(fetchUser.fulfilled, (state, action) => {
             state.isFetching = false;
             state.user = action.payload;
-            localStorage.setItem('jwt', JSON.stringify(action.payload));
+            localStorage.setItem('user', JSON.stringify(action.payload));
         });
         builder.addCase(fetchUser.rejected, (state, _) => {
             state.isFetching = false;

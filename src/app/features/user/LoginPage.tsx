@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Button, Card, Form } from "react-bootstrap"
+import { Button, Card, Form, Spinner } from "react-bootstrap"
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchUser } from "../../store/users/action";
-import { LoginUser, RegisterUser } from "../../store/users/types";
+import { LoginUserInput, RegisterUserInput } from "../../store/users/types";
 import { CONFIRM_PASSWORD, EMAIL_ADDRESS, EMPTY_STRING, FIRST_NAME, LAST_NAME, LOGIN, LOGIN_MESSAGE, PASSWORD, REGISTER, REGISTER_MESSAGE, SIGN_IN, SIGN_UP, SUBMIT, USER_NAME } from "../../utilities/constants";
 import { BUTTON_VARIANT, FORM_TYPE } from "../../utilities/enums";
 
@@ -16,11 +16,11 @@ const LoginPage = () => {
     }
 
     const [formType, setFormType] = useState<USER_FORM>(USER_FORM.LOGIN);
-    const [loginUser, setLoginUser] = useState<LoginUser>({
+    const [loginUser, setLoginUser] = useState<LoginUserInput>({
         email: EMPTY_STRING,
         password: EMPTY_STRING,
     });
-    const [registerUser, setRegisterUser] = useState<RegisterUser>({
+    const [registerUser, setRegisterUser] = useState<RegisterUserInput>({
         firstName: EMPTY_STRING,
         lastName: EMPTY_STRING,
         userName: EMPTY_STRING,
@@ -29,9 +29,7 @@ const LoginPage = () => {
         confirmPassword: EMPTY_STRING,
     });
 
-    const handleLoginForm = () => setFormType(USER_FORM.LOGIN);
-
-    const handleRegisterForm = () => setFormType(USER_FORM.REGISTER);
+    const handleFormType = () => setFormType(loginForm ? USER_FORM.REGISTER : USER_FORM.LOGIN);
 
     const handleLogin = () => dispatch(fetchUser(loginUser));
 
@@ -40,19 +38,19 @@ const LoginPage = () => {
         return console.log(registerUser);
     }
 
-    const isLoginForm = formType == USER_FORM.LOGIN;
+    const loginForm = formType == USER_FORM.LOGIN;
 
-    if (isFetching) return <h1>Loading User...</h1>
+    const registerForm = formType == USER_FORM.REGISTER;
 
     return (
         <div className="vh-100 d-flex align-items-center justify-content-center">
             <Card className="w-50">
                 <Card.Header>
-                    {isLoginForm ? LOGIN : REGISTER}
+                    {loginForm ? LOGIN : REGISTER}
                 </Card.Header>
 
                 <Form className="p-5">
-                    {!isLoginForm &&
+                    {registerForm &&
                         <>
                             <div className="d-flex">
                                 <Form.Group className="mb-3 w-50 me-2">
@@ -91,7 +89,7 @@ const LoginPage = () => {
                             type={FORM_TYPE.EMAIL}
                             placeholder={EMAIL_ADDRESS}
                             onChange={evt =>
-                                isLoginForm
+                                loginForm
                                     ? setLoginUser(prev => ({ ...prev, email: evt.target.value }))
                                     : setRegisterUser(prev => ({ ...prev, email: evt.target.value }))
                             }
@@ -104,14 +102,14 @@ const LoginPage = () => {
                             type={FORM_TYPE.PASSWORD}
                             placeholder={PASSWORD}
                             onChange={evt =>
-                                isLoginForm
+                                loginForm
                                     ? setLoginUser(prev => ({ ...prev, password: evt.target.value }))
                                     : setRegisterUser(prev => ({ ...prev, password: evt.target.value }))
                             }
                         />
                     </Form.Group>
 
-                    {!isLoginForm &&
+                    {registerForm &&
                         <Form.Group className="mb-3">
                             <Form.Label>{CONFIRM_PASSWORD}</Form.Label>
                             <Form.Control
@@ -124,26 +122,25 @@ const LoginPage = () => {
 
                     <Form.Group className="mb-3">
                         <div>
-                            {isLoginForm ? REGISTER_MESSAGE : LOGIN_MESSAGE}
+                            {loginForm ? REGISTER_MESSAGE : LOGIN_MESSAGE}
                             <span
                                 role="button"
                                 className="ps-1 pointer text-primary"
-                                onClick={isLoginForm ? handleRegisterForm : handleLoginForm}
+                                onClick={handleFormType}
                             >
-                                {isLoginForm ? SIGN_UP : SIGN_IN}
+                                {loginForm ? SIGN_UP : SIGN_IN}
                             </span>
                         </div>
                     </Form.Group>
 
                     <Button
                         variant={BUTTON_VARIANT.PRIMARY}
-                        onClick={isLoginForm ? handleLogin : handleRegister}
+                        onClick={loginForm ? handleLogin : handleRegister}
                     >
                         {SUBMIT}
                     </Button>
                 </Form>
             </Card>
-            <div>{user?.userName}</div>
         </div>
     )
 }

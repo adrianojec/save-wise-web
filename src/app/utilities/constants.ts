@@ -1,6 +1,9 @@
 // API
-export const ACCOUNT_API = "accounts";
-export const ACCOUNT_API_WITH_ID = (id: string) => `${ACCOUNT_API}/${id}`;
+export const ACCOUNTS_API = "accounts";
+export const USERS_API = "/user";
+export const USERS_API_LOGIN = `${USERS_API}/login`;
+export const USERS_API_REGISTER = `${USERS_API}/register`;
+export const ACCOUNT_API_WITH_ID = (id: string) => `${ACCOUNTS_API}/${id}`;
 
 // String constants
 export const CONFIRM_PASSWORD = "Confirm Password";

@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
-import { LoginUser, User } from '../store/users/types';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 

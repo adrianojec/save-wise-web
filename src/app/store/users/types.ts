@@ -1,14 +1,15 @@
 export interface UserState {
     isFetching: boolean,
-    user?: User
+    user: User | null,
+    token: string | null,
 }
 
-export interface LoginUser {
+export interface LoginUserInput {
     email: string,
     password: string
 }
 
-export interface RegisterUser {
+export interface RegisterUserInput {
     firstName: string,
     lastName: string,
     userName: string,

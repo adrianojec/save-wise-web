@@ -21,9 +21,7 @@ root.render(
         hideProgressBar
         theme="colored"
       />
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <App />
     </Provider>
   </React.StrictMode>
 );

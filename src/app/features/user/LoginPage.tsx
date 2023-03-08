@@ -32,8 +32,8 @@ const LoginPage = ({ formType }: Props) => {
 
     const handleSwitchForm = () => navigate(formType == USER_FORM.LOGIN ? PATH_NAME.REGISTER : PATH_NAME.LOGIN);
 
-    const handleLogin = () => {
-        dispatch(fetchUser(loginUser));
+    const handleLogin = async () => {
+        await dispatch(fetchUser(loginUser));
         navigate(PATH_NAME.HOME);
     };
 

@@ -1,14 +1,9 @@
-import NavigationContainer from "../../components/Navigation/NavigationContainer"
+import PrivateLayout from "../../layout/PrivateLayout"
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
 
 const AccountDetailPage = () => {
     return (
-        <NavigationContainer
-            children=
-            {
-                <h1>Details Page</h1>
-            }
-        />
+        <h1>Details Page</h1>
     )
 }
 

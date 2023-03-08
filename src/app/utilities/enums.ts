@@ -18,6 +18,8 @@ export enum PATH_NAME {
     HOME = "/",
     TRANSACTIONS = "/transactions",
     ACCOUNTS = "/accounts",
+    ACCOUNT_DETAILS = "/accounts/:id",
+    CREATE_ACCOUNT = "/accounts/create",
     LOGIN = "/login",
     REGISTER = "/register",
 }

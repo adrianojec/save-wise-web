@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button, Card, Form, Spinner } from "react-bootstrap"
-import { Navigate, useNavigate } from "react-router-dom";
+import { Button, Card, Form } from "react-bootstrap"
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchUser } from "../../store/users/action";
 import { LoginUserInput, RegisterUserInput } from "../../store/users/types";
@@ -13,6 +13,7 @@ interface Props {
 
 const LoginPage = ({ formType }: Props) => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { isFetching, user } = useAppSelector(state => state.user);
 
     const [loginUser, setLoginUser] = useState<LoginUserInput>({
@@ -28,7 +29,6 @@ const LoginPage = ({ formType }: Props) => {
         confirmPassword: EMPTY_STRING,
     });
 
-    const navigate = useNavigate();
 
     const handleSwitchForm = () => navigate(formType == USER_FORM.LOGIN ? PATH_NAME.REGISTER : PATH_NAME.LOGIN);
 

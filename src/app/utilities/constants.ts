@@ -28,6 +28,7 @@ export const REGISTER_MESSAGE = "Already have an account?";
 export const SIGN_IN = "Sign in";
 export const SIGN_UP = "Sign up";
 export const SUBMIT = "Submit";
+export const TITLE = "Title";
 export const TRANSACTIONS = "Transactions";
 export const USER_NAME = "User Name";
 

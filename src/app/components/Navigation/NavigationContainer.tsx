@@ -1,3 +1,4 @@
+import { Container } from "react-bootstrap"
 import { navigationPaths } from "../../utilities/constants"
 import NavigationBar from "./NavigationBar"
 
@@ -7,12 +8,12 @@ interface Props {
 
 const NavigationContainer = ({ children }: Props) => {
     return (
-        <>
+        <div className="vh-100">
             <NavigationBar navigationPaths={navigationPaths} />
-            <div className="pt-5">
+            <Container className="mt-5 py-5">
                 {children}
-            </div>
-        </>
+            </Container>
+        </div>
     )
 }
 

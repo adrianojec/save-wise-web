@@ -25,6 +25,7 @@ const AccountOverviewPage = () => {
 
 	const handleCreateAccount = async () => {
 		await dispatch(createAccount(account));
+		await dispatch(fetchAccounts());
 		setIsCreatingAccount(false);
 	};
 

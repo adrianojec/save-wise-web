@@ -2,29 +2,29 @@ import { Button } from "react-bootstrap";
 import axios from 'axios';
 import { useState } from "react";
 import ValidationErrorPage from "./ValidationErrorPage";
+import { APP_BASE_URL } from "../../utilities/constants";
 
 const BuggyPage = () => {
-    const baseUrl = 'http://localhost:5000/api/'
     const [errors, setErrors] = useState<string[]>([]);
 
     function handleNotFound() {
-        axios.get(baseUrl + 'buggy/not-found').catch(err => console.log(err.response));
+        axios.get(APP_BASE_URL + 'buggy/not-found').catch(err => console.log(err.response));
     }
 
     function handleBadRequest() {
-        axios.get(baseUrl + 'buggy/bad-request').catch(err => console.log(err.response));
+        axios.get(APP_BASE_URL + 'buggy/bad-request').catch(err => console.log(err.response));
     }
 
     function handleServerError() {
-        axios.get(baseUrl + 'buggy/server-error').catch(err => console.log(err.response));
+        axios.get(APP_BASE_URL + 'buggy/server-error').catch(err => console.log(err.response));
     }
 
     function handleUnauthorised() {
-        axios.get(baseUrl + 'buggy/unauthorised').catch(err => console.log(err.response));
+        axios.get(APP_BASE_URL + 'buggy/unauthorised').catch(err => console.log(err.response));
     }
 
     function handleBadGuid() {
-        axios.get(baseUrl + 'accounts/notaguid').catch(err => console.log(err.response));
+        axios.get(APP_BASE_URL + 'accounts/notaguid').catch(err => console.log(err.response));
     }
 
     // function handleValidationError() {

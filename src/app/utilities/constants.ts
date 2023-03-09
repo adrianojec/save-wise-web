@@ -3,7 +3,9 @@ import { PATH_NAME } from "./enums";
 
 // API
 export const ACCOUNTS_API = "accounts";
-export const USERS_API = "/users";
+export const LOGIN_API = "users/login";
+export const REGISTER_API = "users/register";
+export const USERS_API = "users";
 export const ACCOUNT_API_WITH_ID = (id: string) => `${ACCOUNTS_API}/${id}`;
 
 // App

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { fetchAccounts } from "../../store/accounts/action";
+import { createAccount, fetchAccounts } from "../../store/accounts/action";
 import { CreateAccount } from "../../store/accounts/types";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { EMPTY_STRING, TITLE } from "../../utilities/constants";
@@ -13,7 +13,7 @@ const AccountOverviewPage = () => {
 	const dispatch = useAppDispatch();
 	const { isFetching, accounts } = useAppSelector(state => state.accounts);
 
-	const [createAccount, setCreateAccount] = useState<CreateAccount>({
+	const [account, setAccount] = useState<CreateAccount>({
 		title: EMPTY_STRING
 	});
 
@@ -22,6 +22,11 @@ const AccountOverviewPage = () => {
 	useEffect(() => {
 		dispatch(fetchAccounts());
 	}, []);
+
+	const handleCreateAccount = async () => {
+		await dispatch(createAccount(account));
+		setIsCreatingAccount(false);
+	};
 
 	if (isFetching) return <Loading />
 
@@ -48,7 +53,7 @@ const AccountOverviewPage = () => {
 								<Form.Control
 									type={FORM_TYPE.TEXT}
 									placeholder={TITLE}
-									onChange={evt => setCreateAccount(prev => ({ ...prev, title: evt.target.value }))}
+									onChange={evt => setAccount(prev => ({ ...prev, title: evt.target.value }))}
 								/>
 							</Form.Group>
 						</Col>
@@ -56,7 +61,7 @@ const AccountOverviewPage = () => {
 						<Col md={{ span: 2 }}>
 							<Button
 								variant={VARIANT.PRIMARY}
-								onClick={() => console.log(createAccount)}
+								onClick={handleCreateAccount}
 							>
 								Create
 							</Button>

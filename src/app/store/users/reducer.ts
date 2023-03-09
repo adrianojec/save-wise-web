@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SLICE_NAME } from "../../utilities/enums";
-import { fetchCurrentUser, fetchUser } from "./action";
+import { fetchCurrentUser, loginUser, registerUser } from "./action";
 import { UserState } from "./types";
 
 export const initialState: UserState = {
@@ -15,15 +15,26 @@ export const userSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         // Login user
-        builder.addCase(fetchUser.pending, (state, _) => {
+        builder.addCase(loginUser.pending, (state, _) => {
             state.isFetching = true;
         });
-        builder.addCase(fetchUser.fulfilled, (state, action) => {
+        builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isFetching = false;
             state.user = action.payload;
             localStorage.setItem('user', JSON.stringify(action.payload));
         });
-        builder.addCase(fetchUser.rejected, (state, _) => {
+        builder.addCase(loginUser.rejected, (state, _) => {
+            state.isFetching = false;
+        });
+
+        // Register user
+        builder.addCase(registerUser.pending, (state, _) => {
+            state.isFetching = true;
+        });
+        builder.addCase(registerUser.fulfilled, (state, _) => {
+            state.isFetching = false;
+        });
+        builder.addCase(registerUser.rejected, (state, _) => {
             state.isFetching = false;
         });
 

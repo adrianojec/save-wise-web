@@ -9,7 +9,7 @@ const PrivateLayout = () => {
         <div className="vh-100">
             <NavigationBar navigationPaths={navigationPaths} />
             <h1>Hi</h1>
-            <Container className="mt-5 py-5">
+            <Container className="py-5">
                 <Outlet />
             </Container>
         </div>

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { createAccount, fetchAccounts } from "../../store/accounts/action";
-import { CreateAccount } from "../../store/accounts/types";
+import { CreateAccountInput } from "../../store/accounts/types";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { EMPTY_STRING, TITLE } from "../../utilities/constants";
-import { FORM_TYPE, PATH_NAME, VARIANT } from "../../utilities/enums";
+import { FORM_TYPE, ROUTE, VARIANT } from "../../utilities/enums";
 import Loading from "../loading/Loading";
 
 const AccountOverviewPage = () => {
@@ -13,7 +13,7 @@ const AccountOverviewPage = () => {
 	const dispatch = useAppDispatch();
 	const { isFetching, accounts } = useAppSelector(state => state.accounts);
 
-	const [account, setAccount] = useState<CreateAccount>({
+	const [account, setAccount] = useState<CreateAccountInput>({
 		title: EMPTY_STRING
 	});
 
@@ -47,7 +47,7 @@ const AccountOverviewPage = () => {
 
 			{isCreatingAccount &&
 				<Form className="w-100">
-					<Row className="d-flex align-items-end">
+					<Row className="d-flex align-items-end mb-5">
 						<Col md={{ span: 5, offset: 3 }} >
 							<Form.Group className="me-2">
 								<Form.Label>{TITLE}</Form.Label>
@@ -82,7 +82,7 @@ const AccountOverviewPage = () => {
 								{account.title}
 								<Button
 									variant={VARIANT.PRIMARY}
-									onClick={() => navigate(`${PATH_NAME.ACCOUNTS}/${account.id}`)}
+									onClick={() => navigate(`${ROUTE.ACCOUNTS}/${account.id}`)}
 								>
 									Select
 								</Button>

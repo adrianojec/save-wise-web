@@ -1,5 +1,5 @@
 import { NavigationPath } from "../models/navigation_path";
-import { PATH_NAME } from "./enums";
+import { ROUTE } from "./enums";
 
 // API
 export const ACCOUNTS_API = "accounts";
@@ -14,7 +14,9 @@ export const APP_NAME = "Save Wise";
 
 // String constants
 export const ACCOUNTS = "Accounts";
+export const AMOUNT = "Amount";
 export const CONFIRM_PASSWORD = "Confirm Password";
+export const DATE_CREATED = "Date Created";
 export const EMAIL_ADDRESS = "Email Address";
 export const EMPTY_STRING = "";
 export const FIRST_NAME = "First Name";
@@ -29,7 +31,9 @@ export const SIGN_IN = "Sign in";
 export const SIGN_UP = "Sign up";
 export const SUBMIT = "Submit";
 export const TITLE = "Title";
+export const TOTAL = "Total";
 export const TRANSACTIONS = "Transactions";
+export const TRANSACTIONS_TYPE = "Transactions type";
 export const USER_NAME = "User Name";
 
 // Navigation Routes
@@ -37,14 +41,14 @@ export const USER_NAME = "User Name";
 export const navigationPaths: NavigationPath[] = [
     {
         title: HOME,
-        path: PATH_NAME.HOME
+        path: ROUTE.HOME
     },
     {
         title: ACCOUNTS,
-        path: PATH_NAME.ACCOUNTS
+        path: ROUTE.ACCOUNTS
     },
     {
         title: TRANSACTIONS,
-        path: PATH_NAME.TRANSACTIONS
+        path: ROUTE.TRANSACTIONS
     }
 ];

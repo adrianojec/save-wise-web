@@ -12,11 +12,11 @@ export interface Account {
     dateCreated: Date;
 }
 
-export interface CreateAccount {
+export interface CreateAccountInput {
     title: string;
 }
 
-export interface UpdateAccount {
+export interface UpdateAccountInput {
     title: string;
 }
 

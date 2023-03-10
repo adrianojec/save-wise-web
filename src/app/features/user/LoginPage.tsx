@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { loginUser, registerUser } from "../../store/users/action";
 import { LoginUserInput, RegisterUserInput } from "../../store/users/types";
 import { CONFIRM_PASSWORD, EMAIL_ADDRESS, EMPTY_STRING, FIRST_NAME, LAST_NAME, LOGIN, LOGIN_MESSAGE, PASSWORD, REGISTER, REGISTER_MESSAGE, SIGN_IN, SIGN_UP, SUBMIT, USER_NAME } from "../../utilities/constants";
-import { VARIANT, FORM_TYPE, USER_FORM, PATH_NAME } from "../../utilities/enums";
+import { VARIANT, FORM_TYPE, USER_FORM, ROUTE } from "../../utilities/enums";
 
 interface Props {
 	formType: USER_FORM
@@ -30,16 +30,16 @@ const LoginPage = ({ formType }: Props) => {
 	});
 
 
-	const handleSwitchForm = () => navigate(formType == USER_FORM.LOGIN ? PATH_NAME.REGISTER : PATH_NAME.LOGIN);
+	const handleSwitchForm = () => navigate(formType == USER_FORM.LOGIN ? ROUTE.REGISTER : ROUTE.LOGIN);
 
 	const handleLogin = async () => {
 		await dispatch(loginUser(loggedUser));
-		navigate(PATH_NAME.HOME);
+		navigate(ROUTE.HOME);
 	};
 
 	const handleRegister = async () => {
 		await dispatch(registerUser(registeredUser))
-		navigate(PATH_NAME.LOGIN);
+		navigate(ROUTE.LOGIN);
 	}
 
 	const loginForm = formType == USER_FORM.LOGIN;

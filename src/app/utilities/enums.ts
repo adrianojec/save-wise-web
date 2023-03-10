@@ -1,5 +1,6 @@
 export enum VARIANT {
     PRIMARY = "primary",
+    SECONDARY = "secondary",
     DARK = "dark"
 }
 
@@ -14,7 +15,7 @@ export enum SLICE_NAME {
     USERS = "users"
 }
 
-export enum PATH_NAME {
+export enum ROUTE {
     HOME = "/",
     TRANSACTIONS = "/transactions",
     ACCOUNTS = "/accounts",
@@ -33,5 +34,10 @@ export enum REQUEST_STATUS_MESSAGE {
 export enum USER_FORM {
     LOGIN,
     REGISTER
+}
+
+export enum TransactionType {
+    INCOME = "Income",
+    EXPENSE = "Expense",
 }
 

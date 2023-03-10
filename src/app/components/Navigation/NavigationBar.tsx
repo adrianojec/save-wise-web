@@ -1,7 +1,7 @@
 import { Nav, Navbar } from 'react-bootstrap'
 import { NavigationPath } from '../../models/navigation_path'
 import { APP_NAME, LOGIN } from '../../utilities/constants'
-import { PATH_NAME, VARIANT } from '../../utilities/enums'
+import { ROUTE, VARIANT } from '../../utilities/enums'
 
 interface Props {
     navigationPaths: NavigationPath[],
@@ -37,8 +37,8 @@ const NavigationBar = ({ navigationPaths }: Props) => {
 
                 </Nav>
                 <Nav>
-                    <Nav.Link href={PATH_NAME.LOGIN}>{LOGIN}</Nav.Link>
-                    <Nav.Link eventKey={2} href={PATH_NAME.REGISTER}>
+                    <Nav.Link href={ROUTE.LOGIN}>{LOGIN}</Nav.Link>
+                    <Nav.Link eventKey={2} href={ROUTE.REGISTER}>
                         Dank memes
                     </Nav.Link>
                 </Nav>

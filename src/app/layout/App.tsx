@@ -9,7 +9,7 @@ import TransactionOverviewPage from "../features/transaction/TransactionOverview
 import LoginPage from "../features/user/LoginPage";
 import { useAppDispatch } from "../store/hooks";
 import { fetchCurrentUser } from "../store/users/action";
-import { PATH_NAME, USER_FORM } from "../utilities/enums";
+import { ROUTE, USER_FORM } from "../utilities/enums";
 import PrivateRoute from "./PrivateRoute";
 
 const App = () => {
@@ -38,15 +38,15 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={PATH_NAME.HOME} element={<PrivateRoute />}>
-          <Route path={PATH_NAME.ACCOUNTS} element={<AccountOverviewPage />} />
-          <Route path={PATH_NAME.ACCOUNT_DETAILS} element={<AccountDetailPage />} />
-          <Route path={PATH_NAME.HOME} element={<HomePage />} />
-          <Route path={PATH_NAME.TRANSACTIONS} element={<TransactionOverviewPage />} />
+        <Route path={ROUTE.HOME} element={<PrivateRoute />}>
+          <Route path={ROUTE.ACCOUNTS} element={<AccountOverviewPage />} />
+          <Route path={ROUTE.ACCOUNT_DETAILS} element={<AccountDetailPage />} />
+          <Route path={ROUTE.HOME} element={<HomePage />} />
+          <Route path={ROUTE.TRANSACTIONS} element={<TransactionOverviewPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
-        <Route path={PATH_NAME.LOGIN} element={<LoginPage formType={USER_FORM.LOGIN} />} />
-        <Route path={PATH_NAME.REGISTER} element={<LoginPage formType={USER_FORM.REGISTER} />} />
+        <Route path={ROUTE.LOGIN} element={<LoginPage formType={USER_FORM.LOGIN} />} />
+        <Route path={ROUTE.REGISTER} element={<LoginPage formType={USER_FORM.REGISTER} />} />
       </Routes>
     </BrowserRouter>
 

@@ -1,11 +1,13 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { accountReducer } from "./accounts/reducer";
+import { transactionReducer } from "./transactions/reducer";
 import { userReducer } from "./users/reducer";
 
 export const store = configureStore(
     {
         reducer: {
             accounts: accountReducer,
+            transactions: transactionReducer,
             user: userReducer,
         },
     }

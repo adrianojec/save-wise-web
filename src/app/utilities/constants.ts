@@ -1,16 +1,17 @@
 import { NavigationPath } from "../models/navigation_path";
 import { ROUTE } from "./enums";
 
-// API
-export const ACCOUNTS_API = "accounts";
-export const LOGIN_API = "users/login";
-export const REGISTER_API = "users/register";
-export const USERS_API = "users";
-export const ACCOUNT_API_WITH_ID = (id: string) => `${ACCOUNTS_API}/${id}`;
-
 // App
 export const APP_BASE_URL = 'http://localhost:5000/api';
 export const APP_NAME = "Save Wise";
+
+// API
+export const ACCOUNTS_API = "accounts";
+export const ACCOUNT_BY_ID_API = (id: string) => `${ACCOUNTS_API}/${id}`;
+export const LOGIN_API = "users/login";
+export const REGISTER_API = "users/register";
+export const TRANSACTIONS_API = (accountId: string) => `accounts/${accountId}/transactions`;
+export const USERS_API = "users";
 
 // String constants
 export const ACCOUNTS = "Accounts";

@@ -1,3 +1,19 @@
-export interface CreateTransactionInput {
+import { TransactionType } from "../../utilities/enums";
 
+export interface TransactionState {
+   isFetching: boolean,
+   transactions: Transaction[],
+   transaction?: Transaction,
+}
+
+export interface Transaction {
+   transactionType: TransactionType,
+   title: string,
+   dateCreated: Date,
+}
+
+export interface CreateTransactionInput {
+   accountId: string,
+   transactionType: TransactionType,
+   title: string,
 }

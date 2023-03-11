@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap"
 import { useNavigate } from "react-router-dom";
+import FormGroup from "../../components/Form/FormGroup";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { loginUser, registerUser } from "../../store/users/action";
 import { LoginUserInput, RegisterUserInput } from "../../store/users/types";
@@ -58,74 +59,62 @@ const LoginPage = ({ formType }: Props) => {
 						<>
 							<Row>
 								<Col>
-									<Form.Group className="mb-3 me-2">
-										<Form.Label>{FIRST_NAME}</Form.Label>
-										<Form.Control
-											type={FORM_TYPE.TEXT}
-											placeholder={FIRST_NAME}
-											onChange={evt => setRegisteredUser(prev => ({ ...prev, firstName: evt.target.value }))}
-										/>
-									</Form.Group>
+									<FormGroup
+										label={FIRST_NAME}
+										type={FORM_TYPE.TEXT}
+										placeholder={FIRST_NAME}
+										onChange={evt => setRegisteredUser(prev => ({ ...prev, firstName: evt.target.value }))}
+									/>
 								</Col>
 
 								<Col>
-									<Form.Group className="mb-3 ms-2">
-										<Form.Label>{LAST_NAME}</Form.Label>
-										<Form.Control
-											type={FORM_TYPE.TEXT}
-											placeholder={LAST_NAME}
-											onChange={evt => setRegisteredUser(prev => ({ ...prev, lastName: evt.target.value }))}
-										/>
-									</Form.Group>
+									<FormGroup
+										label={LAST_NAME}
+										type={FORM_TYPE.TEXT}
+										placeholder={LAST_NAME}
+										onChange={evt => setRegisteredUser(prev => ({ ...prev, lastName: evt.target.value }))}
+									/>
 								</Col>
 							</Row>
 
-							<Form.Group className="mb-3">
-								<Form.Label>{USER_NAME}</Form.Label>
-								<Form.Control
-									type={FORM_TYPE.TEXT}
-									placeholder={USER_NAME}
-									onChange={evt => setRegisteredUser(prev => ({ ...prev, userName: evt.target.value }))}
-								/>
-							</Form.Group>
+							<FormGroup
+								label={USER_NAME}
+								type={FORM_TYPE.TEXT}
+								placeholder={USER_NAME}
+								onChange={evt => setRegisteredUser(prev => ({ ...prev, userName: evt.target.value }))}
+							/>
 						</>
 					}
 
-					<Form.Group className="mb-3">
-						<Form.Label>{EMAIL_ADDRESS}</Form.Label>
-						<Form.Control
-							type={FORM_TYPE.EMAIL}
-							placeholder={EMAIL_ADDRESS}
-							onChange={evt =>
-								loginForm
-									? setLoggedUser(prev => ({ ...prev, email: evt.target.value }))
-									: setRegisteredUser(prev => ({ ...prev, email: evt.target.value }))
-							}
-						/>
-					</Form.Group>
+					<FormGroup
+						label={EMAIL_ADDRESS}
+						type={FORM_TYPE.EMAIL}
+						placeholder={EMAIL_ADDRESS}
+						onChange={evt =>
+							loginForm
+								? setLoggedUser(prev => ({ ...prev, email: evt.target.value }))
+								: setRegisteredUser(prev => ({ ...prev, email: evt.target.value }))
+						}
+					/>
 
-					<Form.Group className="mb-3">
-						<Form.Label>{PASSWORD}</Form.Label>
-						<Form.Control
-							type={FORM_TYPE.PASSWORD}
-							placeholder={PASSWORD}
-							onChange={evt =>
-								loginForm
-									? setLoggedUser(prev => ({ ...prev, password: evt.target.value }))
-									: setRegisteredUser(prev => ({ ...prev, password: evt.target.value }))
-							}
-						/>
-					</Form.Group>
+					<FormGroup
+						label={PASSWORD}
+						type={FORM_TYPE.PASSWORD}
+						placeholder={PASSWORD}
+						onChange={evt =>
+							loginForm
+								? setLoggedUser(prev => ({ ...prev, password: evt.target.value }))
+								: setRegisteredUser(prev => ({ ...prev, password: evt.target.value }))
+						}
+					/>
 
 					{registerForm &&
-						<Form.Group className="mb-3">
-							<Form.Label>{CONFIRM_PASSWORD}</Form.Label>
-							<Form.Control
-								type={FORM_TYPE.PASSWORD}
-								placeholder={CONFIRM_PASSWORD}
-								onChange={evt => setRegisteredUser(prev => ({ ...prev, confirmPassword: evt.target.value }))}
-							/>
-						</Form.Group>
+						<FormGroup
+							label={CONFIRM_PASSWORD}
+							type={FORM_TYPE.PASSWORD}
+							placeholder={CONFIRM_PASSWORD}
+							onChange={evt => setRegisteredUser(prev => ({ ...prev, confirmPassword: evt.target.value }))}
+						/>
 					}
 
 					<Form.Group className="mb-3">

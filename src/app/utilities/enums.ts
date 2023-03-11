@@ -12,7 +12,8 @@ export enum FORM_TYPE {
 
 export enum SLICE_NAME {
     ACCOUNTS = "accounts",
-    USERS = "users"
+    USERS = "users",
+    TRANSACTIONS = "transactions",
 }
 
 export enum ROUTE {

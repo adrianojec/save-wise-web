@@ -5,7 +5,7 @@ import FormGroup from "../../components/Form/FormGroup";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { loginUser, registerUser } from "../../store/users/action";
 import { LoginUserInput, RegisterUserInput } from "../../store/users/types";
-import { CONFIRM_PASSWORD, EMAIL_ADDRESS, EMPTY_STRING, FIRST_NAME, LAST_NAME, LOGIN, LOGIN_MESSAGE, PASSWORD, REGISTER, REGISTER_MESSAGE, SIGN_IN, SIGN_UP, SUBMIT, USER_NAME } from "../../utilities/constants";
+import { CONFIRM_PASSWORD, EMAIL_ADDRESS, EMPTY_STRING, FIRST_NAME, LAST_NAME, LOGIN, LOGIN_MESSAGE, PASSWORD, PASSWORD_NOT_MATCH, PROVIDE_EMAIL, PROVIDE_FIRSTNAME, PROVIDE_LASTNAME, PROVIDE_PASSWORD, PROVIDE_USERNAME, REGISTER, REGISTER_MESSAGE, SIGN_IN, SIGN_UP, SUBMIT, USER_NAME } from "../../utilities/constants";
 import { VARIANT, FORM_TYPE, USER_FORM, ROUTE } from "../../utilities/enums";
 
 interface Props {
@@ -29,7 +29,6 @@ const LoginPage = ({ formType }: Props) => {
 		password: EMPTY_STRING,
 		confirmPassword: EMPTY_STRING,
 	});
-
 
 	const handleSwitchForm = () => navigate(formType == USER_FORM.LOGIN ? ROUTE.REGISTER : ROUTE.LOGIN);
 
@@ -63,6 +62,8 @@ const LoginPage = ({ formType }: Props) => {
 										label={FIRST_NAME}
 										type={FORM_TYPE.TEXT}
 										placeholder={FIRST_NAME}
+										isRequired={true}
+										validationMessage={PROVIDE_FIRSTNAME}
 										onChange={evt => setRegisteredUser(prev => ({ ...prev, firstName: evt.target.value }))}
 									/>
 								</Col>
@@ -72,6 +73,8 @@ const LoginPage = ({ formType }: Props) => {
 										label={LAST_NAME}
 										type={FORM_TYPE.TEXT}
 										placeholder={LAST_NAME}
+										isRequired={true}
+										validationMessage={PROVIDE_LASTNAME}
 										onChange={evt => setRegisteredUser(prev => ({ ...prev, lastName: evt.target.value }))}
 									/>
 								</Col>
@@ -81,6 +84,8 @@ const LoginPage = ({ formType }: Props) => {
 								label={USER_NAME}
 								type={FORM_TYPE.TEXT}
 								placeholder={USER_NAME}
+								isRequired={true}
+								validationMessage={PROVIDE_USERNAME}
 								onChange={evt => setRegisteredUser(prev => ({ ...prev, userName: evt.target.value }))}
 							/>
 						</>
@@ -90,6 +95,8 @@ const LoginPage = ({ formType }: Props) => {
 						label={EMAIL_ADDRESS}
 						type={FORM_TYPE.EMAIL}
 						placeholder={EMAIL_ADDRESS}
+						isRequired={true}
+						validationMessage={PROVIDE_EMAIL}
 						onChange={evt =>
 							loginForm
 								? setLoggedUser(prev => ({ ...prev, email: evt.target.value }))
@@ -101,6 +108,8 @@ const LoginPage = ({ formType }: Props) => {
 						label={PASSWORD}
 						type={FORM_TYPE.PASSWORD}
 						placeholder={PASSWORD}
+						isRequired={true}
+						validationMessage={PROVIDE_PASSWORD}
 						onChange={evt =>
 							loginForm
 								? setLoggedUser(prev => ({ ...prev, password: evt.target.value }))
@@ -113,6 +122,8 @@ const LoginPage = ({ formType }: Props) => {
 							label={CONFIRM_PASSWORD}
 							type={FORM_TYPE.PASSWORD}
 							placeholder={CONFIRM_PASSWORD}
+							isRequired={true}
+							validationMessage={PASSWORD_NOT_MATCH}
 							onChange={evt => setRegisteredUser(prev => ({ ...prev, confirmPassword: evt.target.value }))}
 						/>
 					}

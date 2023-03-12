@@ -17,3 +17,12 @@ export interface CreateTransactionInput {
    transactionType: TransactionType,
    title: string,
 }
+
+export interface FetchTransactionsInput {
+   accountId: string
+}
+
+export interface FetchTransactionInput {
+   accountId: string,
+   id: string
+}

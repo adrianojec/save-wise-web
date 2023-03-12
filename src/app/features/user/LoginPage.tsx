@@ -15,12 +15,14 @@ interface Props {
 const LoginPage = ({ formType }: Props) => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+
 	const { isFetching, user } = useAppSelector(state => state.user);
 
 	const [loggedUser, setLoggedUser] = useState<LoginUserInput>({
 		email: EMPTY_STRING,
 		password: EMPTY_STRING,
 	});
+
 	const [registeredUser, setRegisteredUser] = useState<RegisterUserInput>({
 		firstName: EMPTY_STRING,
 		lastName: EMPTY_STRING,
@@ -95,7 +97,7 @@ const LoginPage = ({ formType }: Props) => {
 						label={EMAIL_ADDRESS}
 						type={FORM_TYPE.EMAIL}
 						placeholder={EMAIL_ADDRESS}
-						isRequired={true}
+						isRequired={registerForm && true}
 						validationMessage={PROVIDE_EMAIL}
 						onChange={evt =>
 							loginForm
@@ -108,7 +110,7 @@ const LoginPage = ({ formType }: Props) => {
 						label={PASSWORD}
 						type={FORM_TYPE.PASSWORD}
 						placeholder={PASSWORD}
-						isRequired={true}
+						isRequired={registerForm && true}
 						validationMessage={PROVIDE_PASSWORD}
 						onChange={evt =>
 							loginForm

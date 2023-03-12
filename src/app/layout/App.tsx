@@ -28,10 +28,9 @@ const App = () => {
     [dispatch],
   )
 
-  useEffect(
-    () => { initApp().then(() => setLoading(false)); },
-    [initApp],
-  )
+  useEffect(() => {
+    initApp().then(() => setLoading(false));
+  }, [initApp],)
 
   if (loading) return <Loading />
 

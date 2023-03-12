@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import FormGroup from "../../components/Form/FormGroup";
 import { createAccount, fetchAccounts } from "../../store/accounts/action";
 import { CreateAccountInput } from "../../store/accounts/types";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { EMPTY_STRING, TITLE } from "../../utilities/constants";
+import { EMPTY_STRING, PROVIDE_TITLE, TITLE } from "../../utilities/constants";
 import { FORM_TYPE, ROUTE, VARIANT } from "../../utilities/enums";
 import Loading from "../loading/Loading";
 
@@ -49,14 +50,15 @@ const AccountOverviewPage = () => {
 				<Form className="w-100">
 					<Row className="d-flex align-items-end mb-5">
 						<Col md={{ span: 5, offset: 3 }} >
-							<Form.Group className="me-2">
-								<Form.Label>{TITLE}</Form.Label>
-								<Form.Control
-									type={FORM_TYPE.TEXT}
-									placeholder={TITLE}
-									onChange={evt => setAccount(prev => ({ ...prev, title: evt.target.value }))}
-								/>
-							</Form.Group>
+							<FormGroup
+								className="mb-0"
+								label={TITLE}
+								type={FORM_TYPE.TEXT}
+								placeholder={TITLE}
+								isRequired={true}
+								validationMessage={PROVIDE_TITLE}
+								onChange={evt => setAccount(prev => ({ ...prev, title: evt.target.value }))}
+							/>
 						</Col>
 
 						<Col md={{ span: 2 }}>

@@ -27,9 +27,9 @@ const FormGroup = ({ label, type, placeholder, isRequired = false, width = "w-10
                onChange(evt);
             }}
             onFocus={() => setIsEmpty(true)}
-            isInvalid={isEmpty}
+            isInvalid={isRequired && isEmpty}
             required={isRequired}
-            isValid={isEmpty == false}
+            isValid={isRequired && isEmpty == false}
          />
          {isEmpty && <Form.Control.Feedback type="invalid">
             {validationMessage}

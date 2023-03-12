@@ -10,7 +10,8 @@ export const ACCOUNTS_API = "accounts";
 export const ACCOUNT_BY_ID_API = (id: string) => `${ACCOUNTS_API}/${id}`;
 export const LOGIN_API = "users/login";
 export const REGISTER_API = "users/register";
-export const TRANSACTIONS_API = (accountId: string) => `accounts/${accountId}/transactions`;
+export const TRANSACTIONS_API = (accountId: string) => `${ACCOUNT_BY_ID_API(accountId)}/transactions`;
+export const TRANSACTION_BY_ID_API = (accountId: string, id: string) => `${ACCOUNT_BY_ID_API(accountId)}/transactions/${id}`;
 export const USERS_API = "users";
 
 // String constants
@@ -31,6 +32,7 @@ export const PROVIDE_EMAIL = "Please provide an email address.";
 export const PROVIDE_FIRSTNAME = "Please provide a first name.";
 export const PROVIDE_LASTNAME = "Please provide a last name.";
 export const PROVIDE_PASSWORD = "Please provide a complex password.";
+export const PROVIDE_TITLE = "Please provide a title.";
 export const PROVIDE_USERNAME = "Please provide a user name.";
 export const REGISTER = "Register";
 export const REGISTER_MESSAGE = "Already have an account?";

@@ -3,17 +3,28 @@ import { Form, InputGroup } from "react-bootstrap"
 import { EMPTY_STRING } from "../../utilities/constants";
 
 interface Props {
-   label: string,
    type: string,
    placeholder: string,
    onChange: (evt: any) => void,
+   value?: string,
+   label?: string,
    isRequired?: boolean,
    width?: "w-25" | "w-50" | "w-75" | "w-100",
    className?: string,
    validationMessage?: string
 }
 
-const FormGroup = ({ label, type, placeholder, isRequired = false, width = "w-100", className, onChange, validationMessage }: Props) => {
+const FormGroup = ({
+   type,
+   placeholder,
+   value,
+   label,
+   isRequired = false,
+   width = "w-100",
+   className,
+   onChange,
+   validationMessage
+}: Props) => {
    const [isEmpty, setIsEmpty] = useState<boolean>();
 
    return (
@@ -22,6 +33,7 @@ const FormGroup = ({ label, type, placeholder, isRequired = false, width = "w-10
          <Form.Control
             type={type}
             placeholder={placeholder}
+            value={value}
             onChange={evt => {
                setIsEmpty(!evt.target.value);
                onChange(evt);

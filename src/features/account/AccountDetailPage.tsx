@@ -7,7 +7,7 @@ import { fetchAccount } from "../../app/store/accounts/action";
 import { useAppDispatch, useAppSelector } from "../../app/store/hooks"
 import { createTransaction } from "../../app/store/transactions/action";
 import { CreateTransactionInput } from "../../app/store/transactions/types";
-import { AMOUNT, DATE_CREATED, EXPENSE, INCOME, TOTAL } from "../../app/utilities/constants";
+import { AMOUNT, DATE_CREATED, EMPTY_STRING, EXPENSE, INCOME, TOTAL, TRANSACTIONS_TYPE } from "../../app/utilities/constants";
 import { FORM_TYPE, TransactionType, VARIANT } from "../../app/utilities/enums";
 import Loading from "../loading/Loading";
 
@@ -22,8 +22,12 @@ const AccountDetailPage = () => {
 		transactionType: 3,
 	});
 
+	const [value, setValue] = useState(EMPTY_STRING);
+
 	const handleCreateTransaction = async () => {
 		await dispatch(createTransaction(transaction));
+		fetchCurrentAccount();
+		setValue(EMPTY_STRING);
 	}
 
 	const fetchCurrentAccount = async () => {
@@ -56,24 +60,27 @@ const AccountDetailPage = () => {
 					<h4>Add transaction</h4>
 
 					<FormGroup
-						label={AMOUNT}
 						type={FORM_TYPE.TEXT}
 						placeholder={AMOUNT}
-						onChange={evt => setTransaction(prev => ({ ...prev, amount: evt.target.value }))}
+						value={value}
+						onChange={evt => {
+							setValue(evt.target.value);
+							setTransaction(prev => ({ ...prev, amount: evt.target.value }));
+						}}
 					/>
 
 					<Form.Check
 						inline
 						label={INCOME}
-						name="group1"
-						type="radio"
+						name={TRANSACTIONS_TYPE}
+						type={FORM_TYPE.RADIO}
 						onChange={() => setTransaction(prev => ({ ...prev, transactionType: TransactionType.INCOME }))}
 					/>
 					<Form.Check
 						inline
 						label={EXPENSE}
-						name="group1"
-						type="radio"
+						name={TRANSACTIONS_TYPE}
+						type={FORM_TYPE.RADIO}
 						onChange={() => setTransaction(prev => ({ ...prev, transactionType: TransactionType.EXPENSE }))}
 					/>
 

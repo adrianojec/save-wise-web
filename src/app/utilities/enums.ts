@@ -7,7 +7,8 @@ export enum VARIANT {
 export enum FORM_TYPE {
     EMAIL = "email",
     PASSWORD = "password",
-    TEXT = "text"
+    TEXT = "text",
+    RADIO = "radio"
 }
 
 export enum SLICE_NAME {

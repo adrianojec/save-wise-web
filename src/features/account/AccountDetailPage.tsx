@@ -1,11 +1,11 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { Button, Card, Col, Form, ListGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, Form, ListGroup, Row, Table } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import FormGroup from "../../app/components/Form/FormGroup";
 import { fetchAccount } from "../../app/store/accounts/action";
 import { useAppDispatch, useAppSelector } from "../../app/store/hooks"
-import { createTransaction } from "../../app/store/transactions/action";
+import { createTransaction, fetchTransactions } from "../../app/store/transactions/action";
 import { CreateTransactionInput } from "../../app/store/transactions/types";
 import { AMOUNT, DATE_CREATED, EMPTY_STRING, EXPENSE, INCOME, TOTAL, TRANSACTIONS_TYPE } from "../../app/utilities/constants";
 import { FORM_TYPE, TransactionType, VARIANT } from "../../app/utilities/enums";
@@ -14,6 +14,7 @@ import Loading from "../loading/Loading";
 const AccountDetailPage = () => {
 	const dispatch = useAppDispatch();
 	const { isFetching, account } = useAppSelector(state => state.accounts);
+	const { transactions } = useAppSelector(state => state.transactions);
 	const { id } = useParams();
 
 	const [transaction, setTransaction] = useState<CreateTransactionInput>({
@@ -27,6 +28,7 @@ const AccountDetailPage = () => {
 	const handleCreateTransaction = async () => {
 		await dispatch(createTransaction(transaction));
 		fetchCurrentAccount();
+		fetchAccountTransactions();
 		setValue(EMPTY_STRING);
 	}
 
@@ -35,8 +37,14 @@ const AccountDetailPage = () => {
 		await dispatch(fetchAccount({ id }))
 	}
 
+	const fetchAccountTransactions = async () => {
+		if (!!!id) return console.log('No value');
+		await dispatch(fetchTransactions({ accountId: id }));
+	}
+
 	useEffect(() => {
 		fetchCurrentAccount();
+		fetchAccountTransactions();
 	}, [id]);
 
 	if (isFetching) return <Loading />
@@ -46,6 +54,30 @@ const AccountDetailPage = () => {
 			<Row>
 				<Col >
 					<h1>Transactions</h1>
+					<Table>
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Type</th>
+								<th>Amount</th>
+							</tr>
+						</thead>
+						<tbody>
+							{transactions.map(transaction => {
+								const { id, dateCreated, transactionType, amount } = transaction;
+
+								return (
+									<tr key={id}
+										style={{ backgroundColor: transactionType == 1 ? "#FFD6D5" : "#CCFFCC" }}
+									>
+										<td>{moment(dateCreated).format('l')}</td>
+										<td>{transactionType == 0 ? INCOME : EXPENSE}</td>
+										<td>{amount}</td>
+									</tr>
+								);
+							})}
+						</tbody>
+					</Table>
 				</Col>
 
 				<Col md="auto">
@@ -76,6 +108,7 @@ const AccountDetailPage = () => {
 						type={FORM_TYPE.RADIO}
 						onChange={() => setTransaction(prev => ({ ...prev, transactionType: TransactionType.INCOME }))}
 					/>
+
 					<Form.Check
 						inline
 						label={EXPENSE}

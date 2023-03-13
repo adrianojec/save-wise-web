@@ -7,8 +7,9 @@ export interface TransactionState {
 }
 
 export interface Transaction {
+   id: string,
    transactionType: TransactionType,
-   title: string,
+   amount: string,
    dateCreated: Date,
 }
 

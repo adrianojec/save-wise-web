@@ -1,4 +1,4 @@
-import PrivateLayout from "../../layout/PrivateLayout"
+import PrivateLayout from "../../app/layout/PrivateLayout"
 
 const TransactionOverviewPage = () => {
 	return (

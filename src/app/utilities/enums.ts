@@ -38,7 +38,7 @@ export enum USER_FORM {
 }
 
 export enum TransactionType {
-    INCOME = "Income",
-    EXPENSE = "Expense",
+    INCOME,
+    EXPENSE,
 }
 

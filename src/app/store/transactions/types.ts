@@ -14,8 +14,8 @@ export interface Transaction {
 
 export interface CreateTransactionInput {
    accountId: string,
-   transactionType: TransactionType,
-   title: string,
+   transactionType: number,
+   amount: number,
 }
 
 export interface FetchTransactionsInput {

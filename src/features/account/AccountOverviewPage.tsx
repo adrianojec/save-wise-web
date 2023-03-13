@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import FormGroup from "../../components/Form/FormGroup";
-import { createAccount, fetchAccounts } from "../../store/accounts/action";
-import { CreateAccountInput } from "../../store/accounts/types";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { EMPTY_STRING, PROVIDE_TITLE, TITLE } from "../../utilities/constants";
-import { FORM_TYPE, ROUTE, VARIANT } from "../../utilities/enums";
+import FormGroup from "../../app/components/Form/FormGroup";
+import { createAccount, fetchAccounts } from "../../app/store/accounts/action";
+import { CreateAccountInput } from "../../app/store/accounts/types";
+import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
+import { EMPTY_STRING, PROVIDE_TITLE, TITLE } from "../../app/utilities/constants";
+import { FORM_TYPE, ROUTE, VARIANT } from "../../app/utilities/enums";
 import Loading from "../loading/Loading";
 
 const AccountOverviewPage = () => {

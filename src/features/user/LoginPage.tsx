@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap"
 import { useNavigate } from "react-router-dom";
-import FormGroup from "../../components/Form/FormGroup";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { loginUser, registerUser } from "../../store/users/action";
-import { LoginUserInput, RegisterUserInput } from "../../store/users/types";
-import { CONFIRM_PASSWORD, EMAIL_ADDRESS, EMPTY_STRING, FIRST_NAME, LAST_NAME, LOGIN, LOGIN_MESSAGE, PASSWORD, PASSWORD_NOT_MATCH, PROVIDE_EMAIL, PROVIDE_FIRSTNAME, PROVIDE_LASTNAME, PROVIDE_PASSWORD, PROVIDE_USERNAME, REGISTER, REGISTER_MESSAGE, SIGN_IN, SIGN_UP, SUBMIT, USER_NAME } from "../../utilities/constants";
-import { VARIANT, FORM_TYPE, USER_FORM, ROUTE } from "../../utilities/enums";
+import FormGroup from "../../app/components/Form/FormGroup";
+import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
+import { loginUser, registerUser } from "../../app/store/users/action";
+import { LoginUserInput, RegisterUserInput } from "../../app/store/users/types";
+import { CONFIRM_PASSWORD, EMAIL_ADDRESS, EMPTY_STRING, FIRST_NAME, LAST_NAME, LOGIN, LOGIN_MESSAGE, PASSWORD, PASSWORD_NOT_MATCH, PROVIDE_EMAIL, PROVIDE_FIRSTNAME, PROVIDE_LASTNAME, PROVIDE_PASSWORD, PROVIDE_USERNAME, REGISTER, REGISTER_MESSAGE, SIGN_IN, SIGN_UP, SUBMIT, USER_NAME } from "../../app/utilities/constants";
+import { VARIANT, FORM_TYPE, USER_FORM, ROUTE } from "../../app/utilities/enums";
 
 interface Props {
 	formType: USER_FORM

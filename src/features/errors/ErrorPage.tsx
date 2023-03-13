@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 import axios from 'axios';
 import { useState } from "react";
 import ValidationErrorPage from "./ValidationErrorPage";
-import { APP_BASE_URL } from "../../utilities/constants";
+import { APP_BASE_URL } from "../../app/utilities/constants";
 
 const BuggyPage = () => {
     const [errors, setErrors] = useState<string[]>([]);

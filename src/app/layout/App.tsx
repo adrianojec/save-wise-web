@@ -42,7 +42,7 @@ const App = () => {
           <Route path={ROUTE.ACCOUNT_DETAILS} element={<AccountDetailPage />} />
           <Route path={ROUTE.HOME} element={<HomePage />} />
           <Route path={ROUTE.TRANSACTIONS} element={<TransactionOverviewPage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path={ROUTE.ALL} element={<NotFoundPage />} />
         </Route>
         <Route path={ROUTE.LOGIN} element={<LoginPage formType={USER_FORM.LOGIN} />} />
         <Route path={ROUTE.REGISTER} element={<LoginPage formType={USER_FORM.REGISTER} />} />

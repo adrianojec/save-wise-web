@@ -14,10 +14,17 @@ export const TRANSACTIONS_API = (accountId: string) => `${ACCOUNT_BY_ID_API(acco
 export const TRANSACTION_BY_ID_API = (accountId: string, id: string) => `${ACCOUNT_BY_ID_API(accountId)}/transactions/${id}`;
 export const USERS_API = "users";
 
+// Colors
+export const LIGHT_RED = "#FFD6D5";
+export const LIGHT_GREEN = "#CCFFCC";
+
 // String constants
 export const ACCOUNTS = "Accounts";
 export const AMOUNT = "Amount";
 export const CONFIRM_PASSWORD = "Confirm Password";
+export const CREATE = "Create";
+export const CREATE_ACCOUNT = "Create Account";
+export const DATE = "Date";
 export const DATE_CREATED = "Date Created";
 export const EMAIL_ADDRESS = "Email Address";
 export const EMPTY_STRING = "";
@@ -38,6 +45,7 @@ export const PROVIDE_TITLE = "Please provide a title.";
 export const PROVIDE_USERNAME = "Please provide a user name.";
 export const REGISTER = "Register";
 export const REGISTER_MESSAGE = "Already have an account?";
+export const SELECT = "Select";
 export const SIGN_IN = "Sign in";
 export const SIGN_UP = "Sign up";
 export const SUBMIT = "Submit";
@@ -45,10 +53,10 @@ export const TITLE = "Title";
 export const TOTAL = "Total";
 export const TRANSACTIONS = "Transactions";
 export const TRANSACTIONS_TYPE = "Transactions type";
+export const TYPE = "Type";
 export const USER_NAME = "User Name";
 
 // Navigation Routes
-
 export const navigationPaths: NavigationPath[] = [
     {
         title: HOME,

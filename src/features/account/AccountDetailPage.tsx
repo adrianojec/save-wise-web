@@ -7,7 +7,7 @@ import { fetchAccount } from "../../app/store/accounts/action";
 import { useAppDispatch, useAppSelector } from "../../app/store/hooks"
 import { createTransaction, fetchTransactions } from "../../app/store/transactions/action";
 import { CreateTransactionInput } from "../../app/store/transactions/types";
-import { AMOUNT, DATE_CREATED, EMPTY_STRING, EXPENSE, INCOME, TOTAL, TRANSACTIONS_TYPE } from "../../app/utilities/constants";
+import { AMOUNT, DATE, DATE_CREATED, EMPTY_STRING, EXPENSE, INCOME, LIGHT_GREEN, LIGHT_RED, TOTAL, TRANSACTIONS_TYPE, TYPE } from "../../app/utilities/constants";
 import { FORM_TYPE, TransactionType, VARIANT } from "../../app/utilities/enums";
 import Loading from "../loading/Loading";
 
@@ -57,9 +57,9 @@ const AccountDetailPage = () => {
 					<Table>
 						<thead>
 							<tr>
-								<th>Date</th>
-								<th>Type</th>
-								<th>Amount</th>
+								<th>{DATE}</th>
+								<th>{TYPE}</th>
+								<th>{AMOUNT}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -68,11 +68,11 @@ const AccountDetailPage = () => {
 
 								return (
 									<tr key={id}
-										style={{ backgroundColor: transactionType == 1 ? "#FFD6D5" : "#CCFFCC" }}
+										style={{ backgroundColor: transactionType == 1 ? LIGHT_RED : LIGHT_GREEN }}
 									>
 										<td>{moment(dateCreated).format('l')}</td>
 										<td>{transactionType == 0 ? INCOME : EXPENSE}</td>
-										<td>{amount}</td>
+										<td>{transactionType == 1 && '-'}{amount}</td>
 									</tr>
 								);
 							})}
@@ -82,7 +82,11 @@ const AccountDetailPage = () => {
 
 				<Col md="auto">
 					<Card className="mb-5">
-						<Card.Header>{account?.title}</Card.Header>
+						<Card.Header>
+							<h4>
+								{account?.title}
+							</h4>
+						</Card.Header>
 						<ListGroup variant="flush">
 							<ListGroup.Item>{TOTAL}: {account?.total}</ListGroup.Item>
 							<ListGroup.Item>{DATE_CREATED}: {moment(account?.dateCreated).format('l')}</ListGroup.Item>

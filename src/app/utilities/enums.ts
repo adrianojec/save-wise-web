@@ -18,13 +18,14 @@ export enum SLICE_NAME {
 }
 
 export enum ROUTE {
-    HOME = "/",
-    TRANSACTIONS = "/transactions",
     ACCOUNTS = "/accounts",
     ACCOUNT_DETAILS = "/accounts/:id",
+    ALL = "*",
     CREATE_ACCOUNT = "/accounts/create",
+    HOME = "/",
     LOGIN = "/login",
     REGISTER = "/register",
+    TRANSACTIONS = "/transactions",
 }
 
 export enum REQUEST_STATUS_MESSAGE {

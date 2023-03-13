@@ -5,7 +5,7 @@ import FormGroup from "../../app/components/Form/FormGroup";
 import { createAccount, fetchAccounts } from "../../app/store/accounts/action";
 import { CreateAccountInput } from "../../app/store/accounts/types";
 import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
-import { EMPTY_STRING, PROVIDE_TITLE, TITLE } from "../../app/utilities/constants";
+import { CREATE, CREATE_ACCOUNT, EMPTY_STRING, PROVIDE_TITLE, SELECT, TITLE } from "../../app/utilities/constants";
 import { FORM_TYPE, ROUTE, VARIANT } from "../../app/utilities/enums";
 import Loading from "../loading/Loading";
 
@@ -40,7 +40,7 @@ const AccountOverviewPage = () => {
 						<Button
 							className="w-100"
 							onClick={() => setIsCreatingAccount(!isCreatingAccount)}
-						>Create Account
+						>{CREATE_ACCOUNT}
 						</Button>
 					</Col>
 				</Row>
@@ -48,10 +48,9 @@ const AccountOverviewPage = () => {
 
 			{isCreatingAccount &&
 				<Form className="w-100">
-					<Row className="d-flex align-items-end mb-5">
+					<Row className="d-flex align-items-end">
 						<Col md={{ span: 5, offset: 3 }} >
 							<FormGroup
-								className="mb-0"
 								label={TITLE}
 								type={FORM_TYPE.TEXT}
 								placeholder={TITLE}
@@ -61,12 +60,15 @@ const AccountOverviewPage = () => {
 							/>
 						</Col>
 
-						<Col md={{ span: 2 }}>
+						<Col
+							md={{ span: 2 }}
+							className="mb-3"
+						>
 							<Button
 								variant={VARIANT.PRIMARY}
 								onClick={handleCreateAccount}
 							>
-								Create
+								{CREATE}
 							</Button>
 						</Col>
 					</Row>
@@ -86,7 +88,7 @@ const AccountOverviewPage = () => {
 									variant={VARIANT.PRIMARY}
 									onClick={() => navigate(`${ROUTE.ACCOUNTS}/${account.id}`)}
 								>
-									Select
+									{SELECT}
 								</Button>
 							</ListGroup.Item>
 						</ListGroup>

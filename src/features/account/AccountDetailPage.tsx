@@ -138,7 +138,7 @@ const AccountDetailPage = () => {
 						onChange={evt => {
 							setValue(evt.target.value);
 							isEditing
-								? setUpdatedTransaction(prev => ({ ...prev, amount: evt.target.value }))
+								? setUpdatedTransaction(prev => ({ ...prev, amount: evt.target.value == EMPTY_STRING ? parseInt(value) : evt.target.value }))
 								: setTransaction(prev => ({ ...prev, amount: evt.target.value }));
 						}}
 					/>

@@ -5,7 +5,7 @@ import AccountOverviewPage from "../../features/account/AccountOverviewPage";
 import NotFoundPage from "../../features/errors/NotFoundPage";
 import HomePage from "../../features/home/HomePage";
 import Loading from "../../features/loading/Loading";
-import TransactionOverviewPage from "../../features/transaction/TransactionOverviewPage";
+import ActivityOverviewPage from "../../features/activity/ActivityOverviewPage";
 import LoginPage from "../../features/user/LoginPage";
 import { useAppDispatch } from "../store/hooks";
 import { fetchCurrentUser } from "../store/users/action";
@@ -41,7 +41,7 @@ const App = () => {
           <Route path={ROUTE.ACCOUNTS} element={<AccountOverviewPage />} />
           <Route path={ROUTE.ACCOUNT_DETAILS} element={<AccountDetailPage />} />
           <Route path={ROUTE.HOME} element={<HomePage />} />
-          <Route path={ROUTE.TRANSACTIONS} element={<TransactionOverviewPage />} />
+          <Route path={ROUTE.ACTIVITIES} element={<ActivityOverviewPage />} />
           <Route path={ROUTE.ALL} element={<NotFoundPage />} />
         </Route>
         <Route path={ROUTE.LOGIN} element={<LoginPage formType={USER_FORM.LOGIN} />} />

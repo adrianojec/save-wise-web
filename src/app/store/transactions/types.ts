@@ -15,7 +15,7 @@ export interface Transaction {
 
 export interface CreateTransactionInput {
    accountId: string,
-   transactionType: number,
+   transactionType: TransactionType,
    amount: number,
 }
 
@@ -26,4 +26,11 @@ export interface FetchTransactionsInput {
 export interface FetchTransactionInput {
    accountId: string,
    id: string
+}
+
+export interface UpdateTransactionInput {
+   id: string,
+   accountId: string,
+   transactionType: TransactionType,
+   amount: number,
 }

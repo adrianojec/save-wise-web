@@ -1,7 +1,9 @@
 export enum VARIANT {
+    DARK = "dark",
+    FLUSH = "flush",
+    OUTLINE_DARK = "outline-dark",
     PRIMARY = "primary",
     SECONDARY = "secondary",
-    DARK = "dark"
 }
 
 export enum FORM_TYPE {
@@ -25,7 +27,7 @@ export enum ROUTE {
     HOME = "/",
     LOGIN = "/login",
     REGISTER = "/register",
-    TRANSACTIONS = "/transactions",
+    ACTIVITIES = "/activities",
 }
 
 export enum REQUEST_STATUS_MESSAGE {

@@ -7,11 +7,12 @@ export const APP_NAME = "Save Wise";
 
 // API
 export const ACCOUNTS_API = "accounts";
-export const ACCOUNT_BY_ID_API = (id: string) => `${ACCOUNTS_API}/${id}`;
+export const GET_ACCOUNT_BY_ID_API = (id: string) => `${ACCOUNTS_API}/${id}`;
 export const LOGIN_API = "users/login";
 export const REGISTER_API = "users/register";
-export const TRANSACTIONS_API = (accountId: string) => `${ACCOUNT_BY_ID_API(accountId)}/transactions`;
-export const TRANSACTION_BY_ID_API = (accountId: string, id: string) => `${ACCOUNT_BY_ID_API(accountId)}/transactions/${id}`;
+export const CREATE_TRANSACTIONS_API = (accountId: string) => `${GET_ACCOUNT_BY_ID_API(accountId)}/transactions`;
+export const GET_TRANSACTION_BY_ID_API = (accountId: string, id: string) => `${GET_ACCOUNT_BY_ID_API(accountId)}/transactions/${id}`;
+export const UPDATE_TRANSACTION_API = (accountId: string, id: string) => `${GET_ACCOUNT_BY_ID_API(accountId)}/transactions/${id}`;
 export const USERS_API = "users";
 
 // Colors
@@ -20,12 +21,16 @@ export const LIGHT_GREEN = "#CCFFCC";
 
 // String constants
 export const ACCOUNTS = "Accounts";
+export const ACTION = "Action";
+export const ACTIVITES = "Activities";
+export const ADD_TRANSACTION = "Add transaction";
 export const AMOUNT = "Amount";
 export const CONFIRM_PASSWORD = "Confirm Password";
 export const CREATE = "Create";
 export const CREATE_ACCOUNT = "Create Account";
 export const DATE = "Date";
 export const DATE_CREATED = "Date Created";
+export const EDIT = "Edit";
 export const EMAIL_ADDRESS = "Email Address";
 export const EMPTY_STRING = "";
 export const EXPENSE = "Expense";
@@ -54,6 +59,8 @@ export const TOTAL = "Total";
 export const TRANSACTIONS = "Transactions";
 export const TRANSACTIONS_TYPE = "Transactions type";
 export const TYPE = "Type";
+export const UPDATE = "Update";
+export const UPDATE_TRANSACTION = "Update transaction";
 export const USER_NAME = "User Name";
 
 // Navigation Routes
@@ -67,7 +74,7 @@ export const navigationPaths: NavigationPath[] = [
         path: ROUTE.ACCOUNTS
     },
     {
-        title: TRANSACTIONS,
-        path: ROUTE.TRANSACTIONS
+        title: ACTIVITES,
+        path: ROUTE.ACTIVITIES
     }
 ];

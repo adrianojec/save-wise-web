@@ -8,6 +8,7 @@ export const APP_NAME = "Save Wise";
 // API
 export const ACCOUNTS_API = "accounts";
 export const GET_ACCOUNT_BY_ID_API = (id: string) => `${ACCOUNTS_API}/${id}`;
+export const UPDATE_ACCOUNT_API = (id: string) => `${ACCOUNTS_API}/${id}`;
 export const LOGIN_API = "users/login";
 export const REGISTER_API = "users/register";
 export const CREATE_TRANSACTIONS_API = (accountId: string) => `${GET_ACCOUNT_BY_ID_API(accountId)}/transactions`;

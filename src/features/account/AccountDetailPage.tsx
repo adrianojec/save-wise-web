@@ -4,10 +4,11 @@ import Loading from "../loading/Loading";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Form, ListGroup, Row, Table } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { fetchAccount } from "../../app/store/accounts/action";
+import { fetchAccount, updateAccount } from "../../app/store/accounts/action";
 import { useAppDispatch, useAppSelector } from "../../app/store/hooks"
 import { createTransaction, fetchTransactions, updateTransaction } from "../../app/store/transactions/action";
 import { CreateTransactionInput, UpdateTransactionInput } from "../../app/store/transactions/types";
+import { UpdateAccountInput } from "../../app/store/accounts/types";
 import { ACTION, ADD_TRANSACTION, AMOUNT, CREATE, DATE, DATE_CREATED, EDIT, EMPTY_STRING, EXPENSE, INCOME, LIGHT_GREEN, LIGHT_RED, TOTAL, TRANSACTIONS, TRANSACTIONS_TYPE, TYPE, UPDATE, UPDATE_TRANSACTION } from "../../app/utilities/constants";
 import { FORM_TYPE, TransactionType, VARIANT } from "../../app/utilities/enums";
 
@@ -30,21 +31,35 @@ const AccountDetailPage = () => {
 		transactionType: 3,
 	});
 
-	const [value, setValue] = useState(EMPTY_STRING);
+	const [updatedAccount, setUpdatedAccount] = useState<UpdateAccountInput>({
+		id: id!,
+		title: EMPTY_STRING
+	});
+
+	const [value, setValue] = useState<number>(0);
 
 	const [isEditing, setIsEditing] = useState<boolean>(false);
+
+	const [isEditingAccount, setIsEditingAccount] = useState<boolean>(false);
 
 	const handleCreateTransaction = async () => {
 		await dispatch(createTransaction(transaction));
 		fetchCurrentAccount();
 		fetchAccountTransactions();
-		setValue(EMPTY_STRING);
+		setValue(0);
 	}
 
 	const handleUpdateTransaction = async () => {
 		await dispatch(updateTransaction(updatedTransaction));
 		fetchAccountTransactions();
-		setValue(EMPTY_STRING);
+		fetchCurrentAccount();
+		setValue(0);
+		setIsEditing(false);
+	}
+
+	const handleUpdateAccount = async () => {
+		await dispatch(updateAccount(updatedAccount));
+		fetchCurrentAccount();
 	}
 
 	const fetchCurrentAccount = async () => {
@@ -101,7 +116,7 @@ const AccountDetailPage = () => {
 												variant={VARIANT.OUTLINE_DARK}
 												size="sm"
 												onClick={() => {
-													setUpdatedTransaction(prev => ({ ...prev, id: id, transactionType: transactionType }))
+													setUpdatedTransaction(prev => ({ ...prev, id: id, amount: amount, transactionType: transactionType }))
 													setValue(amount);
 													setIsEditing(true);
 												}}
@@ -119,9 +134,30 @@ const AccountDetailPage = () => {
 				<Col md="auto">
 					<Card className="mb-5">
 						<Card.Header>
-							<h4>
-								{account?.title}
-							</h4>
+							<Row>
+								<Col>
+									{isEditingAccount
+										? <Form.Control
+											type={FORM_TYPE.TEXT}
+											defaultValue={account?.title}
+											onChange={(value) => setUpdatedAccount((prev) => ({ ...prev, title: value.target.value }))}
+										/>
+										: <h4>{account?.title}</h4>
+									}
+								</Col>
+								<Col md="auto">
+									<Button
+										variant={VARIANT.OUTLINE_DARK}
+										size="sm"
+										onClick={() => {
+											setIsEditingAccount(!isEditingAccount);
+											isEditingAccount && handleUpdateAccount();
+										}}
+									>
+										{isEditingAccount ? UPDATE : EDIT}
+									</Button>
+								</Col>
+							</Row>
 						</Card.Header>
 						<ListGroup variant={VARIANT.FLUSH}>
 							<ListGroup.Item>{TOTAL}: {account?.total}</ListGroup.Item>
@@ -134,19 +170,18 @@ const AccountDetailPage = () => {
 					<FormGroup
 						type={FORM_TYPE.TEXT}
 						placeholder={AMOUNT}
-						value={value}
+						defaultValue={value != 0 ? value.toString() : EMPTY_STRING}
 						onChange={evt => {
-							setValue(evt.target.value);
 							isEditing
-								? setUpdatedTransaction(prev => ({ ...prev, amount: evt.target.value == EMPTY_STRING ? parseInt(value) : evt.target.value }))
-								: setTransaction(prev => ({ ...prev, amount: evt.target.value }));
+								? setUpdatedTransaction((prev) => ({ ...prev, amount: evt.target.value }))
+								: setTransaction((prev) => ({ ...prev, amount: evt.target.value }));
 						}}
 					/>
 
 					<Form.Check
 						inline
 						label={INCOME}
-						checked={isIncome}
+						checked={isEditing ? isIncome : undefined}
 						name={TRANSACTIONS_TYPE}
 						type={FORM_TYPE.RADIO}
 						onChange={() => {
@@ -159,7 +194,7 @@ const AccountDetailPage = () => {
 					<Form.Check
 						inline
 						label={EXPENSE}
-						checked={isExpense}
+						checked={isEditing ? isExpense : undefined}
 						name={TRANSACTIONS_TYPE}
 						type={FORM_TYPE.RADIO}
 						onChange={() => {

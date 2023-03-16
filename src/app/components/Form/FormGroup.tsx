@@ -4,9 +4,9 @@ import { EMPTY_STRING } from "../../utilities/constants";
 
 interface Props {
    type: string,
-   placeholder: string,
-   onChange: (evt: any) => void,
-   value?: string,
+   placeholder?: string,
+   onChange?: (evt: any) => void,
+   defaultValue?: string,
    label?: string,
    isRequired?: boolean,
    width?: "w-25" | "w-50" | "w-75" | "w-100",
@@ -17,7 +17,7 @@ interface Props {
 const FormGroup = ({
    type,
    placeholder,
-   value,
+   defaultValue,
    label,
    isRequired = false,
    width = "w-100",
@@ -33,10 +33,10 @@ const FormGroup = ({
          <Form.Control
             type={type}
             placeholder={placeholder}
-            value={value}
+            defaultValue={defaultValue}
             onChange={evt => {
                setIsEmpty(!evt.target.value);
-               onChange(evt);
+               !!onChange && onChange!(evt);
             }}
             onFocus={() => setIsEmpty(true)}
             isInvalid={isRequired && isEmpty}

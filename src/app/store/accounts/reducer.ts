@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SLICE_NAME } from "../../utilities/enums";
-import { createAccount, fetchAccount, fetchAccounts } from "./action";
+import { createAccount, fetchAccount, fetchAccounts, updateAccount } from "./action";
 import { AccountsState } from "./types";
 
 export const initialState: AccountsState = {
@@ -46,6 +46,17 @@ export const accountSlice = createSlice({
             state.isFetching = false;
         });
         builder.addCase(createAccount.rejected, (state, _) => {
+            state.isFetching = false;
+        });
+
+        // Update account
+        builder.addCase(updateAccount.pending, (state, _) => {
+            state.isFetching = true;
+        });
+        builder.addCase(updateAccount.fulfilled, (state, _) => {
+            state.isFetching = false;
+        });
+        builder.addCase(updateAccount.rejected, (state, _) => {
             state.isFetching = false;
         });
     }

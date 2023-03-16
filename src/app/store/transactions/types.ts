@@ -9,7 +9,7 @@ export interface TransactionState {
 export interface Transaction {
    id: string,
    transactionType: TransactionType,
-   amount: string,
+   amount: number,
    dateCreated: Date,
 }
 

@@ -17,6 +17,7 @@ export interface CreateAccountInput {
 }
 
 export interface UpdateAccountInput {
+    id: string;
     title: string;
 }
 

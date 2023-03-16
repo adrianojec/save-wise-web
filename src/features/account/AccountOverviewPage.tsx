@@ -82,14 +82,22 @@ const AccountOverviewPage = () => {
 							key={account.id}
 							className="mb-2"
 						>
-							<ListGroup.Item className="w-100 d-flex justify-content-between">
-								{account.title}
-								<Button
-									variant={VARIANT.PRIMARY}
-									onClick={() => navigate(`${ROUTE.ACCOUNTS}/${account.id}`)}
-								>
-									{SELECT}
-								</Button>
+							<ListGroup.Item>
+								<Row>
+									<Col md={{ span: 10 }}>
+										{account.title}
+									</Col>
+									<Col>
+										<Button
+											className="ms-3"
+											variant={VARIANT.PRIMARY}
+											size="sm"
+											onClick={() => navigate(`${ROUTE.ACCOUNTS}/${account.id}`)}
+										>
+											{SELECT}
+										</Button>
+									</Col>
+								</Row>
 							</ListGroup.Item>
 						</ListGroup>
 					)}

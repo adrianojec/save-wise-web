@@ -24,3 +24,7 @@ export interface UpdateAccountInput {
 export interface FetchAccountInput {
     id: string;
 }
+
+export interface DeleteAccountInput {
+    id: string;
+}

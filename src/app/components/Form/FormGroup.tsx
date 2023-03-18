@@ -5,7 +5,7 @@ interface Props {
    type: string,
    placeholder?: string,
    onChange?: (evt: any) => void,
-   defaultValue?: string,
+   value?: string,
    label?: string,
    isRequired?: boolean,
    width?: "w-25" | "w-50" | "w-75" | "w-100",
@@ -16,7 +16,7 @@ interface Props {
 const FormGroup = ({
    type,
    placeholder,
-   defaultValue,
+   value,
    label,
    isRequired = false,
    width = "w-100",
@@ -32,7 +32,7 @@ const FormGroup = ({
          <Form.Control
             type={type}
             placeholder={placeholder}
-            defaultValue={defaultValue}
+            value={value}
             onChange={evt => {
                setIsEmpty(!evt.target.value);
                !!onChange && onChange!(evt.target.value);

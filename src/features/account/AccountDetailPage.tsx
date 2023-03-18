@@ -36,7 +36,9 @@ const AccountDetailPage = () => {
 		title: EMPTY_STRING
 	});
 
-	const [value, setValue] = useState<number>(0);
+	const [amountValue, setAmountValue] = useState<number>(0);
+
+	const [titleValue, setTitleValue] = useState<string>(EMPTY_STRING);
 
 	const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -46,14 +48,14 @@ const AccountDetailPage = () => {
 		await dispatch(createTransaction(transaction));
 		fetchCurrentAccount();
 		fetchAccountTransactions();
-		setValue(0);
+		setAmountValue(0);
 	}
 
 	const handleUpdateTransaction = async () => {
 		await dispatch(updateTransaction(updatedTransaction));
 		fetchAccountTransactions();
 		fetchCurrentAccount();
-		setValue(0);
+		setAmountValue(0);
 		setIsEditing(false);
 	}
 
@@ -122,7 +124,7 @@ const AccountDetailPage = () => {
 														amount: amount,
 														transactionType: transactionType
 													}))
-													setValue(amount);
+													setAmountValue(amount);
 													setIsEditing(true);
 												}}
 											>
@@ -142,10 +144,13 @@ const AccountDetailPage = () => {
 							<Row>
 								<Col>
 									{isEditingAccount
-										? <Form.Control
+										? <FormGroup
 											type={FORM_TYPE.TEXT}
-											defaultValue={account?.title}
-											onChange={(value) => setUpdatedAccount((prev) => ({ ...prev, title: value.target.value }))}
+											value={titleValue}
+											onChange={(value) => {
+												setTitleValue(value);
+												setUpdatedAccount((prev) => ({ ...prev, title: value }));
+											}}
 										/>
 										: <h4>{account?.title}</h4>
 									}
@@ -156,6 +161,7 @@ const AccountDetailPage = () => {
 										size="sm"
 										onClick={() => {
 											setIsEditingAccount(!isEditingAccount);
+											setTitleValue(account != undefined ? account?.title : EMPTY_STRING);
 											isEditingAccount && handleUpdateAccount();
 										}}
 									>
@@ -175,8 +181,9 @@ const AccountDetailPage = () => {
 					<FormGroup
 						type={FORM_TYPE.TEXT}
 						placeholder={AMOUNT}
-						defaultValue={value != 0 ? value.toString() : EMPTY_STRING}
+						value={amountValue.toString()}
 						onChange={(value) => {
+							setAmountValue(value);
 							isEditing
 								? setUpdatedTransaction((prev) => ({ ...prev, amount: value }))
 								: setTransaction((prev) => ({ ...prev, amount: value }));

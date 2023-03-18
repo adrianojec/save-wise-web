@@ -1,6 +1,3 @@
-import moment from "moment";
-import FormGroup from "../../app/components/Form/FormGroup";
-import Loading from "../loading/Loading";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Form, ListGroup, Row, Table } from "react-bootstrap";
 import { useParams } from "react-router-dom";
@@ -11,6 +8,9 @@ import { CreateTransactionInput, UpdateTransactionInput } from "../../app/store/
 import { UpdateAccountInput } from "../../app/store/accounts/types";
 import { ACTION, ADD_TRANSACTION, AMOUNT, CREATE, DATE, DATE_CREATED, EDIT, EMPTY_STRING, EXPENSE, INCOME, LIGHT_GREEN, LIGHT_RED, TOTAL, TRANSACTIONS, TRANSACTIONS_TYPE, TYPE, UPDATE, UPDATE_TRANSACTION } from "../../app/utilities/constants";
 import { FORM_TYPE, TransactionType, VARIANT } from "../../app/utilities/enums";
+import moment from "moment";
+import FormGroup from "../../app/components/Form/FormGroup";
+import Loading from "../loading/Loading";
 
 const AccountDetailPage = () => {
 	const dispatch = useAppDispatch();
@@ -116,7 +116,12 @@ const AccountDetailPage = () => {
 												variant={VARIANT.OUTLINE_DARK}
 												size="sm"
 												onClick={() => {
-													setUpdatedTransaction(prev => ({ ...prev, id: id, amount: amount, transactionType: transactionType }))
+													setUpdatedTransaction((prev) => ({
+														...prev,
+														id: id,
+														amount: amount,
+														transactionType: transactionType
+													}))
 													setValue(amount);
 													setIsEditing(true);
 												}}
@@ -171,10 +176,10 @@ const AccountDetailPage = () => {
 						type={FORM_TYPE.TEXT}
 						placeholder={AMOUNT}
 						defaultValue={value != 0 ? value.toString() : EMPTY_STRING}
-						onChange={evt => {
+						onChange={(value) => {
 							isEditing
-								? setUpdatedTransaction((prev) => ({ ...prev, amount: evt.target.value }))
-								: setTransaction((prev) => ({ ...prev, amount: evt.target.value }));
+								? setUpdatedTransaction((prev) => ({ ...prev, amount: value }))
+								: setTransaction((prev) => ({ ...prev, amount: value }));
 						}}
 					/>
 

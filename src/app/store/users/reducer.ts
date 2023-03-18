@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { USER } from "../../utilities/constants";
 import { SLICE_NAME } from "../../utilities/enums";
 import { fetchCurrentUser, loginUser, registerUser } from "./action";
 import { UserState } from "./types";
@@ -6,7 +7,7 @@ import { UserState } from "./types";
 export const initialState: UserState = {
     isFetching: false,
     user: null,
-    token: localStorage.getItem('user'),
+    token: localStorage.getItem(USER),
 }
 
 export const userSlice = createSlice({
@@ -21,7 +22,7 @@ export const userSlice = createSlice({
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isFetching = false;
             state.user = action.payload;
-            localStorage.setItem('user', JSON.stringify(action.payload));
+            localStorage.setItem(USER, JSON.stringify(action.payload));
         });
         builder.addCase(loginUser.rejected, (state, _) => {
             state.isFetching = false;
@@ -45,7 +46,7 @@ export const userSlice = createSlice({
         builder.addCase(fetchCurrentUser.fulfilled, (state, action) => {
             state.isFetching = false;
             state.user = action.payload;
-            localStorage.setItem('user', JSON.stringify(action.payload));
+            localStorage.setItem(USER, JSON.stringify(action.payload));
         });
         builder.addCase(fetchCurrentUser.rejected, (state, _) => {
             state.isFetching = false;

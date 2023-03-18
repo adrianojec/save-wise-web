@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { requests } from "../../api/api";
-import { CREATE_TRANSACTIONS_API, UPDATE_TRANSACTION_API } from "../../utilities/constants";
+import { CREATE_TRANSACTIONS_API, TRANSACTIONS_API, UPDATE_TRANSACTION_API } from "../../utilities/constants";
 import { CreateTransactionInput, FetchTransactionsInput, Transaction, UpdateTransactionInput } from "./types";
 
 export const createTransaction = createAsyncThunk<Transaction, CreateTransactionInput>(
@@ -18,7 +18,7 @@ export const fetchTransactions = createAsyncThunk<Transaction[], FetchTransactio
    'fetchTransactions',
    async ({ accountId }, thunkAPI) => {
       try {
-         return await requests.get<Transaction[]>(CREATE_TRANSACTIONS_API(accountId));
+         return await requests.get<Transaction[]>(TRANSACTIONS_API(accountId));
       } catch (error: any) {
          return thunkAPI.rejectWithValue({ error: error.data });
       }

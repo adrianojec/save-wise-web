@@ -1,6 +1,5 @@
 import { useState } from "react"
-import { Form, InputGroup } from "react-bootstrap"
-import { EMPTY_STRING } from "../../utilities/constants";
+import { Form } from "react-bootstrap"
 
 interface Props {
    type: string,
@@ -29,14 +28,14 @@ const FormGroup = ({
 
    return (
       <Form.Group className={`${width} ${className} mb-3 me-2`}>
-         <Form.Label>{label}</Form.Label>
+         {!!label && <Form.Label>{label}</Form.Label>}
          <Form.Control
             type={type}
             placeholder={placeholder}
             defaultValue={defaultValue}
             onChange={evt => {
                setIsEmpty(!evt.target.value);
-               !!onChange && onChange!(evt);
+               !!onChange && onChange!(evt.target.value);
             }}
             onFocus={() => setIsEmpty(true)}
             isInvalid={isRequired && isEmpty}

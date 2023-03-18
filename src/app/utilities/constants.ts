@@ -7,14 +7,17 @@ export const APP_NAME = "Save Wise";
 
 // API
 export const ACCOUNTS_API = "accounts";
+export const CONFIG_HEADER = (token: string) => `Bearer ${token}`;
+export const CREATE_ACCOUNT_API = "accounts";
+export const CREATE_TRANSACTIONS_API = (accountId: string) => `${GET_ACCOUNT_BY_ID_API(accountId)}/transactions`;
 export const GET_ACCOUNT_BY_ID_API = (id: string) => `${ACCOUNTS_API}/${id}`;
-export const UPDATE_ACCOUNT_API = (id: string) => `${ACCOUNTS_API}/${id}`;
+export const GET_TRANSACTION_BY_ID_API = (accountId: string, id: string) => `${GET_ACCOUNT_BY_ID_API(accountId)}/transactions/${id}`;
+export const GET_CURRENT_USER_API = "users";
 export const LOGIN_API = "users/login";
 export const REGISTER_API = "users/register";
-export const CREATE_TRANSACTIONS_API = (accountId: string) => `${GET_ACCOUNT_BY_ID_API(accountId)}/transactions`;
-export const GET_TRANSACTION_BY_ID_API = (accountId: string, id: string) => `${GET_ACCOUNT_BY_ID_API(accountId)}/transactions/${id}`;
+export const TRANSACTIONS_API = (accountId: string) => `${GET_ACCOUNT_BY_ID_API(accountId)}/transactions`;
+export const UPDATE_ACCOUNT_API = (id: string) => `${ACCOUNTS_API}/${id}`;
 export const UPDATE_TRANSACTION_API = (accountId: string, id: string) => `${GET_ACCOUNT_BY_ID_API(accountId)}/transactions/${id}`;
-export const USERS_API = "users";
 
 // Colors
 export const LIGHT_RED = "#FFD6D5";
@@ -62,6 +65,7 @@ export const TRANSACTIONS_TYPE = "Transactions type";
 export const TYPE = "Type";
 export const UPDATE = "Update";
 export const UPDATE_TRANSACTION = "Update transaction";
+export const USER = "user";
 export const USER_NAME = "User Name";
 
 // Navigation Routes

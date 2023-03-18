@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useAppDispatch } from "../store/hooks";
+import { fetchCurrentUser } from "../store/users/action";
+import { ROUTE, USER_FORM } from "../utilities/enums";
 import AccountDetailPage from "../../features/account/AccountDetailPage";
 import AccountOverviewPage from "../../features/account/AccountOverviewPage";
 import NotFoundPage from "../../features/errors/NotFoundPage";
@@ -7,9 +10,6 @@ import HomePage from "../../features/home/HomePage";
 import Loading from "../../features/loading/Loading";
 import ActivityOverviewPage from "../../features/activity/ActivityOverviewPage";
 import LoginPage from "../../features/user/LoginPage";
-import { useAppDispatch } from "../store/hooks";
-import { fetchCurrentUser } from "../store/users/action";
-import { ROUTE, USER_FORM } from "../utilities/enums";
 import PrivateRoute from "./PrivateRoute";
 
 const App = () => {

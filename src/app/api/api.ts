@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
-import { APP_BASE_URL, EMPTY_STRING } from '../utilities/constants';
+import { APP_BASE_URL, CONFIG_HEADER, EMPTY_STRING, USER } from '../utilities/constants';
 import { REQUEST_STATUS_MESSAGE } from '../utilities/enums';
 
 axios.defaults.baseURL = APP_BASE_URL;
@@ -8,10 +8,10 @@ axios.defaults.baseURL = APP_BASE_URL;
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 axios.interceptors.request.use((config) => {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem(USER);
     const token = !!user ? JSON.parse(user).token : EMPTY_STRING;
 
-    if (token) config.headers!.Authorization = `Bearer ${token}`;
+    if (token) config.headers!.Authorization = CONFIG_HEADER(token);
     return config;
 });
 

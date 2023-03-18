@@ -25,22 +25,22 @@ const NavigationBar = ({ navigationPaths }: Props) => {
                         navigationPaths.map(navigationPath => {
                             const { title, path } = navigationPath;
 
-                            return <Nav.Link
-                                key={title}
-                                href={path}
-                            >
-                                {title}
-                            </Nav.Link>
+                            return (
+                                <Nav.Link
+                                    key={title}
+                                    href={path}
+                                >
+                                    {title}
+                                </Nav.Link>
+                            )
                         })
                     }
 
 
                 </Nav>
+
                 <Nav>
                     <Nav.Link href={ROUTE.LOGIN}>{LOGIN}</Nav.Link>
-                    <Nav.Link eventKey={2} href={ROUTE.REGISTER}>
-                        Dank memes
-                    </Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import FormGroup from "../../app/components/Form/FormGroup";
 import { createAccount, fetchAccounts } from "../../app/store/accounts/action";
 import { CreateAccountInput } from "../../app/store/accounts/types";
 import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
 import { CREATE, CREATE_ACCOUNT, EMPTY_STRING, PROVIDE_TITLE, SELECT, TITLE } from "../../app/utilities/constants";
 import { FORM_TYPE, ROUTE, VARIANT } from "../../app/utilities/enums";
+import FormGroup from "../../app/components/Form/FormGroup";
 import Loading from "../loading/Loading";
 
 const AccountOverviewPage = () => {
@@ -48,15 +48,14 @@ const AccountOverviewPage = () => {
 
 			{isCreatingAccount &&
 				<Form className="w-100">
-					<Row className="d-flex align-items-end">
+					<Row className="d-flex align-items-start">
 						<Col md={{ span: 5, offset: 3 }} >
 							<FormGroup
-								label={TITLE}
 								type={FORM_TYPE.TEXT}
 								placeholder={TITLE}
 								isRequired={true}
 								validationMessage={PROVIDE_TITLE}
-								onChange={evt => setAccount(prev => ({ ...prev, title: evt.target.value }))}
+								onChange={(value) => setAccount(prev => ({ ...prev, title: value }))}
 							/>
 						</Col>
 
@@ -87,6 +86,7 @@ const AccountOverviewPage = () => {
 									<Col md={{ span: 10 }}>
 										{account.title}
 									</Col>
+
 									<Col>
 										<Button
 											className="ms-3"

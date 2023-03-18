@@ -8,8 +8,8 @@ const PrivateLayout = () => {
     return (
         <div className="vh-100">
             <NavigationBar navigationPaths={navigationPaths} />
-            <h1>Hi</h1>
-            <Container className="py-5">
+
+            <Container className="py-5 mt-5">
                 <Outlet />
             </Container>
         </div>
